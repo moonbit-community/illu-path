@@ -40,6 +40,28 @@ pub impl Show for UnixPathComponent with output(self, logger) {
 pub impl Show for UnixPathComponent with to_string(self) = "%identity"
 
 ///|
+pub impl Show for PathError with output(self, logger) {
+  match self {
+    PathError(start~, message~) => {
+      logger.write_string("PathError(start=")
+      logger.write_object(start)
+      logger.write_string(", message=")
+      logger.write_object(message)
+      logger.write_char(')')
+    }
+  }
+}
+
+///|
+pub impl Show for PathStyle with output(self, logger) {
+  match self {
+    Win => logger.write_string("Win")
+    Unix => logger.write_string("Unix")
+    Unknown => logger.write_string("Unknown")
+  }
+}
+
+///|
 pub impl[A : IsString] Show for File[A] with output(self, logger) {
   logger.write_string(self.base.to_string())
   if self.extension is Some(ext) {

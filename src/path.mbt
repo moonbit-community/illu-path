@@ -8,7 +8,7 @@ fn parse_windows_relative_path(
   let mut rest = s
   let directory : Array[WinPathComponent] = []
   let mut start = start
-  let file : WinFile? = for {
+  let file : WinFile? = for ;; {
     lexmatch rest with longest {
       // pattern: <path_component><backslashes>
       // backslashes elimination
@@ -78,7 +78,7 @@ fn parse_unix_relative_path(
   let mut rest = s
   let directory : Array[UnixPathComponent] = []
   let mut start = start
-  let file : UnixFile? = for {
+  let file : UnixFile? = for ;; {
     lexmatch rest with longest {
       // pattern: <path_component><slashes>
       // slashes elimination
