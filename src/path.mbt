@@ -612,7 +612,7 @@ pub fn[T] Directory::sub(
   start? : Int = 0,
   end? : Int = self.length(),
 ) -> ArrayView[T] {
-  FixedArray::sub(self.0, start~, end~)
+  self.0[start:end]
 }
 
 ///|
