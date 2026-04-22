@@ -149,7 +149,7 @@ pub impl PlatformPath for WinPathComponent with from(s) {
 ///|
 pub(all) suberror PathError {
   PathError(start~ : Int, message~ : String)
-} derive(Show)
+}
 
 ///|
 let windows_reserved_names : FixedArray[String] = [
@@ -215,4 +215,4 @@ pub(all) enum PathStyle {
   Win
   Unix
   Unknown
-} derive(Show)
+}
