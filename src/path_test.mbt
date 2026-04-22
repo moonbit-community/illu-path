@@ -173,7 +173,7 @@ test "Windows relative path" {
 test "file extension" {
   let path = Path::parse("./README.mbt.md")
   let file = path.file().unwrap()
-  @json.inspect(file, content={ "base": "README.mbt", "extension": "md" })
+  json_inspect(file, content={ "base": "README.mbt", "extension": "md" })
   inspect(path, content="README.mbt.md")
 }
 
