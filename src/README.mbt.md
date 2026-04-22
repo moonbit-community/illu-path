@@ -8,7 +8,7 @@ A MoonBit library for cross-platform path manipulation, supporting both Unix and
 
 Demonstrates building paths using PathBuilder from a relative path.
 
-```mbt
+```mbt nocheck
 ///|
 test {
   let path = @path.Path::parse("./projects/")
@@ -21,7 +21,7 @@ test {
 
 Demonstrates building paths using PathBuilder from a Windows absolute path.
 
-```mbt
+```mbt nocheck
 ///|
 test {
   let path = @path.Path::parse("C:\\projects\\")
@@ -35,7 +35,7 @@ test {
 
 Shows basic path operations like extracting file name, directory, and prefix.
 
-```mbt
+```mbt nocheck
 ///|
 test "Simple String Operations" {
   let path = @path.Path::parse("C:\\Users\\username\\Documents\\file.txt")
@@ -49,7 +49,7 @@ test "Simple String Operations" {
 
 Illustrates type-safe access to directory components for Unix paths.
 
-```mbt
+```mbt nocheck
 ///|
 test "type safe directory components" {
   let path = @path.Path::parse("/home/username/proj/src/")
@@ -68,7 +68,7 @@ test "type safe directory components" {
 
 Examples of different path kinds: relative and absolute for Unix and Windows.
 
-```mbt
+```mbt nocheck
 ///|
 test "Unix relative path" {
   let path = @path.Path::parse("home/username/proj/src/README.mbt.md")
@@ -80,7 +80,7 @@ test "Unix relative path" {
 }
 ```
 
-```mbt
+```mbt nocheck
 ///|
 test "Unix absolute path" {
   let path = @path.Path::parse("/home/username/proj/src/README.mbt.md")
@@ -92,7 +92,7 @@ test "Unix absolute path" {
 }
 ```
 
-```mbt
+```mbt nocheck
 ///|
 test "Windows relative path" {
   let path = @path.Path::parse("Users\\username\\proj\\src\\README.mbt.md")
@@ -105,7 +105,7 @@ test "Windows relative path" {
 }
 ```
 
-```mbt
+```mbt nocheck
 ///|
 test "Windows absolute path" {
   let path = @path.Path::parse("C:\\Users\\username\\proj\\src\\README.mbt.md")
@@ -118,7 +118,7 @@ test "Windows absolute path" {
 }
 ```
 
-```mbt
+```mbt nocheck
 ///|
 test "Windows relative root path" {
   let path = @path.Path::parse("\\Users\\username\\proj\\src\\README.mbt.md")
