@@ -163,14 +163,14 @@ pub fn Path::parse(
     // this pattern exect match the whole path string
     // pattern: `\\?\<symlink>`
     ("\\\\\?\\" ("[^\\]+" as symlink)) =>
-      win_path(prefix=VerbatimSymlink(symlink=symlink.to_string()))
+      win_path(prefix=VerbatimSymlink(symlink=symlink.to_owned()))
     // this pattern exect match the whole path string
     // pattern: `\\?\UNC\<hostname>\<shared_folder>`
     ("\\\\\?UNC\\" ("[^\\]+" as hostname) "\\" ("[^\\]+" as shared_folder)) =>
       win_path(
         prefix=VerbatimUNC(
-          hostname=hostname.to_string(),
-          shared_folder=shared_folder.to_string(),
+          hostname=hostname.to_owned(),
+          shared_folder=shared_folder.to_owned(),
         ),
       )
     // this pattern exect match the whole path string
@@ -178,14 +178,14 @@ pub fn Path::parse(
     ("\\\\" ("[^\\]+" as hostname) "\\" ("[^\\]+" as shared_folder)) =>
       win_path(
         prefix=UNC(
-          hostname=hostname.to_string(),
-          shared_folder=shared_folder.to_string(),
+          hostname=hostname.to_owned(),
+          shared_folder=shared_folder.to_owned(),
         ),
       )
     // this pattern exect match the whole path string
     // pattern: `\\.\<device>`
     ("\\\\\.\\" ("[^\\]+" as device)) =>
-      win_path(prefix=DeviceNS(device=device.to_string()))
+      win_path(prefix=DeviceNS(device=device.to_owned()))
     // this pattern exect match the whole path string
     // pattern: `\\?\<letter>:\`
     //
@@ -207,7 +207,7 @@ pub fn Path::parse(
     // this pattern exect match the whole path string
     // pattern: `\\?\Volume{<guid>}`
     ("\\\\\?\\Volume[{]" ("[^}]+" as guid) "[}]") =>
-      win_path(prefix=VerbatimVolumeGUID(guid.to_string()))
+      win_path(prefix=VerbatimVolumeGUID(guid.to_owned()))
     //-----------------------------------------------------------------------------
     // with <rest_of_path>
     //-----------------------------------------------------------------------------
@@ -223,7 +223,7 @@ pub fn Path::parse(
         kind~,
       )
       win_path(
-        prefix=VerbatimSymlink(symlink=symlink.to_string()),
+        prefix=VerbatimSymlink(symlink=symlink.to_owned()),
         directory~,
         file?,
       )
@@ -250,8 +250,8 @@ pub fn Path::parse(
       )
       win_path(
         prefix=VerbatimUNC(
-          hostname=hostname.to_string(),
-          shared_folder=shared_folder.to_string(),
+          hostname=hostname.to_owned(),
+          shared_folder=shared_folder.to_owned(),
         ),
         directory~,
         file?,
@@ -273,8 +273,8 @@ pub fn Path::parse(
       )
       win_path(
         prefix=UNC(
-          hostname=hostname.to_string(),
-          shared_folder=shared_folder.to_string(),
+          hostname=hostname.to_owned(),
+          shared_folder=shared_folder.to_owned(),
         ),
         directory~,
         file?,
@@ -288,7 +288,7 @@ pub fn Path::parse(
         root_eliminate=true,
         kind~,
       )
-      win_path(prefix=VerbatimVolumeGUID(guid.to_string()), directory~, file?)
+      win_path(prefix=VerbatimVolumeGUID(guid.to_owned()), directory~, file?)
     }
     // pattern: `\\.\<device>\<rest_of_path>`
     //
@@ -301,7 +301,7 @@ pub fn Path::parse(
         root_eliminate=true,
         kind~,
       )
-      win_path(prefix=DeviceNS(device=device.to_string()), directory~, file?)
+      win_path(prefix=DeviceNS(device=device.to_owned()), directory~, file?)
     }
     // pattern: `\\?\<letter>:\<rest_of_path>`
     //
@@ -508,7 +508,7 @@ fn WinPathComponent::from(
       )
     }
   }
-  WinPathComponent(s.to_string())
+  WinPathComponent(s.to_owned())
 }
 
 ///|
@@ -542,7 +542,7 @@ fn UnixPathComponent::from(
       )
     }
   }
-  UnixPathComponent(s.to_string())
+  UnixPathComponent(s.to_owned())
 }
 
 ///|
@@ -573,7 +573,7 @@ pub impl PlatformPath for UnixPathComponent with from(s) {
       )
     }
   }
-  UnixPathComponent(s.to_string())
+  UnixPathComponent(s.to_owned())
 }
 
 ///|
