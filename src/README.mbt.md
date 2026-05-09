@@ -39,7 +39,7 @@ Shows basic path operations like extracting file name, directory, and prefix.
 ///|
 test "Simple String Operations" {
   let path = @path.Path::parse("C:\\Users\\username\\Documents\\file.txt")
-  inspect(path.file(), content="Some(file.txt)")
+  inspect(path.file().unwrap(), content="file.txt")
   inspect(path.directory()[:].join("\\"), content="Users\\username\\Documents")
   inspect(path.prefix(), content="C:\\")
 }
